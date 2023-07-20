@@ -1,0 +1,17 @@
+Users:
+  GetUsers:
+    path: /users
+    method: get
+    response:
+      media_type: application/json
+      status_code: 200
+      content: 
+        message: Hello User
+        name: Flavio Filipe
+
+  PostUser:
+    path: /users
+    method: post
+    response:
+      media_type: application/json
+      status_code: 201

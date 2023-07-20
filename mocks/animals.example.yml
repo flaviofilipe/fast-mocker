@@ -1,0 +1,15 @@
+Animals:
+  GetAnimals:
+    path: /animals
+    method: get
+    response:
+      media_type: application/json
+      status_code: 200
+      content: Hello World
+
+  PostAnimals:
+    path: /animals
+    method: post
+    response:
+      media_type: application/json
+      status_code: 201

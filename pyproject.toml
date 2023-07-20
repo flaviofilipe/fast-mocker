@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "fast-mocker"
+version = "0.1.0"
+description = ""
+authors = ["Flavio Filipe <flaviofilipe.dev@gmail.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = ">=1.0.0,<2.0.0"
+taskipy = "^1.11.0"
+fastapi = "^0.100.0"
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
+pyyaml = "^6.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+blue = "^0.9.1"
+isort = "^5.12.0"
+
+[build-system]
+requires = ["poetry-core>=1.2.2"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+pythonpath = [
+  "."
+]
+
+[tool.isort]
+profile="black"
+line_length=79
+
+[tool.taskipy.tasks]
+lint="blue --check --diff . && isort --check --diff ."
+fix_lint="isort . && blue ."
+test = "pytest -s -x --cov=src -vv"
+post_test = "coverage html"
+run = "uvicorn main:app --reload"
