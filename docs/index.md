@@ -1,94 +1,88 @@
-# Fast Mocker 🚀
+# Get Started 👨‍💻
 
----
+👋 Welcome to Fast Mocker! This guide will walk you through the steps to install, run, and test the Fast Mocker project. Fast Mocker is a Python 3.11 project using FastAPI to simulate a REST API, returning responses based on YAML files in the `/mocks` folder.
 
-**Documentation**: <a href="https://fast-mocker.readthedocs.io/" target="_blank">https://fast-mocker.readthedocs.io/</a>
+## Installation 🚀
 
-**Source Code**: <a href="https://github.com/flaviofilipe/fast-mocker" target="_blank">https://github.com/flaviofilipe/fast-mocker</a>
+### Clone the Repository 🔗
 
----
+To get started, you need to clone the Fast Mocker repository from GitHub. Open your terminal and run the following command:
 
-## Description 📝
-Fast Mocker is a project developed in Python 3.11 using FastAPI. It serves as a tool to simulate a REST API by returning responses based on YAML files located in the /mocks directory. The project includes two example files: users.yml and animals.yml. 🐍✨
-
-## Installation 🛠️
-To install and set up the Fast Mocker project, follow the steps below:
-
-### Prerequisites 📋
-- Python 3.11
-- Poetry 🎶
-
-### Steps 🚀
-1. Clone the repository from Github:
-   ```
-   git clone https://github.com/flaviofilipe/FastMocker.git
-   ```
-
-2. Change into the project directory:
-   ```
-   cd FastMocker
-   ```
-
-3. Install the project dependencies using Poetry:
-   ```
-   poetry install
-   ```
-
-## Developing 🚀
-Follow the commands below to execute different tasks of the Fast Mocker application:
-
-### Execute the application ▶️
+```bash
+git clone https://github.com/flaviofilipe/fast-mocker.git
 ```
+
+### Install Dependencies with Poetry 📦
+
+Fast Mocker uses Poetry to manage its dependencies. If you don't have Poetry installed, you can install it using `pip`:
+
+```bash
+pip install poetry
+```
+
+Next, navigate to the project folder and use Poetry to install the required dependencies:
+
+```bash
+cd fast-mocker
+poetry install
+```
+
+## Running the Project ▶️
+
+Now that the project is installed, you can run Fast Mocker using the following command:
+
+```bash
 poetry run task run
 ```
 
-### Run tests 🧪
+Fast Mocker will now be running on `localhost:8000` 🌐. You can access the API endpoints at `localhost:8000/{endpoint_path}`.
+
+## YAML Configuration Files 📄
+
+Before testing the API, you need to create your YAML configuration files in the `/mocks` folder. The YAML files should follow the same structure as the example files: `/mocks/animals.example.yml` and `/mocks/users.example.yml`.
+
+### Example YAML Configuration ✏️
+
+Here's an example of the YAML configuration format:
+
+```yaml
+Animals:
+  GetAnimals:
+    path: /animals
+    method: get
+    response:
+      media_type: application/json
+      status_code: 200
+      content: Hello World
+
+  PostAnimals:
+    path: /animals
+    method: post
+    response:
+      media_type: application/json
+      status_code: 201
 ```
-poetry run task test
+
+### Information ℹ️
+
+- `Animals`: Entity (replace with your desired entity name).
+- `[GetAnimals, PostAnimals]`: Templates (replace with your desired endpoint names).
+- `path`: The endpoint that can be accessed with `localhost:8000/path`.
+- `method`: The HTTP method to use when making a request to the path.
+- `response`: The response that will be returned when calling the endpoint.
+  - `media_type`: The type of the response.
+  - `status_code`: The HTTP status code of the response.
+
+## Testing with cURL 🧪
+
+After configuring the YAML files, you can test the API using cURL. For example:
+
+```bash
+curl -X GET http://localhost:8000/animals
 ```
 
-### Validate the code (linting) ✅
-```
-poetry run task lint
-```
+## Conclusion 🎉
 
-### Automatically fix linting issues ✨
-```
-poetry run task fix_lint
-```
+You've now successfully installed, run, and tested Fast Mocker! Feel free to explore the project, create more YAML configurations, and simulate various API responses.
 
-### Generate coverage report 📊
-```
-poetry run task post_test
-```
-
-## Contributing 🤝
-If you would like to contribute to Fast Mocker, follow the steps below:
-
-1. Fork the repository on Github.
-
-2. Clone your forked repository:
-   ```
-   git clone https://github.com/flaviofilipe/FastMocker.git
-   ```
-
-3. Create a new branch for your changes:
-   ```
-   git checkout -b feature/your-feature
-   ```
-
-4. Make the necessary changes and commit them:
-   ```
-   git add .
-   git commit -m "Add your commit message here"
-   ```
-
-5. Push your changes to your Github repository:
-   ```
-   git push origin feature/your-feature
-   ```
-
-6. Create a pull request on the original repository to propose your changes.
-
-## License 📜
-This project is licensed under the [MIT License](LICENSE).
+If you have any questions or encounter any issues, don't hesitate to reach out for help. Happy mocking! 😄🚀
