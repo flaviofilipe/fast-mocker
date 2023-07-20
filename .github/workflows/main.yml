@@ -26,7 +26,7 @@ jobs:
       shell: bash
 
     - name: Install dependencies
-      run: poetry install
+      run: poetry install --without doc
 
     - name: Run tests
       run: poetry run task test

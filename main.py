@@ -1,21 +1,28 @@
 import uvicorn
 from fastapi import FastAPI
 
-from src.parse_api.model import Parse
-from src.parse_api.templates import get_mocks
+from src.parse_api.model import Template
+from src.parse_api.templates import get_templates
 
 app = FastAPI()
 
 
-def map_routes(parser: Parse):
+def map_routes(template: Template) -> None:
+    """Map the content from YAML configuration with FastAPI route
+
+    Args:
+        parser (src.parse_api.model.Parse): YAML configuration parsed
+    """
     app.add_api_route(
-        path=parser.template.path,
-        endpoint=parser.template.response.get_response,
-        methods=[parser.template.method],
+        path=template.path,
+        endpoint=template.response.get_response,
+        methods=[template.method],
     )
 
 
-list(map(lambda m: list(map(map_routes, m[next(iter(m))])), get_mocks()))
+"""registering routes """
+list(map(map_routes, get_templates()))
+
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=8000)

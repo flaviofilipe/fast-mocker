@@ -12,6 +12,11 @@ class ParseResponse(BaseModel):
     headers: Mapping[str, str] | None
 
     def get_response(self):
+        """
+        Returns the FastAPI Response base on the information given by YAML file
+        >>> get_response()
+        Response
+        """
         content = (
             json.dumps(self.content)
             if type(self.content) == dict
@@ -26,12 +31,14 @@ class ParseResponse(BaseModel):
 
 
 class Template(BaseModel):
+    entity: str
+    name: str
     path: str
     method: str
     response: Optional[ParseResponse]
 
 
-class Parse(BaseModel):
-    entity: str
-    name: str
-    template: Template
+# class Parse(BaseModel):
+#     entity: str
+#     name: str
+#     template: Template

@@ -16,12 +16,9 @@ def parse_response_fixture() -> model.ParseResponse:
 @pytest.fixture
 def template_fixture(parse_response_fixture) -> model.Template:
     return model.Template(
-        path='/tests', method='get', response=parse_response_fixture
-    )
-
-
-@pytest.fixture
-def parse_fixture(template_fixture) -> model.Parse:
-    return model.Parse(
-        entity='Tests', name='GetTest', template=template_fixture
+        entity='Tests',
+        name='GetTest',
+        path='/tests',
+        method='get',
+        response=parse_response_fixture,
     )

@@ -1,0 +1,17 @@
+site_name: Fast Mocker
+repo_url: https://github.com/flaviofilipe/fast-mocker
+repo_name: flaviofilipe/fast-mocker
+edit_uri: tree/main/docs
+
+theme:
+  name: material
+
+plugins:
+- mkdocstrings:
+    custom_templates: templates
+    default_handler: python
+    handlers:
+      python:
+        options:
+          show_source: true
+        paths: [fast-mocker]

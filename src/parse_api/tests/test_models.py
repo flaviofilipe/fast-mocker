@@ -15,10 +15,7 @@ def test_parse_response(parse_response_fixture: model.ParseResponse):
 
 
 def test_template(template_fixture: model.Template):
+    assert template_fixture.entity == 'Tests'
+    assert template_fixture.name == 'GetTest'
     assert template_fixture.path == '/tests'
     assert template_fixture.method == 'get'
-
-
-def test_parse(parse_fixture: model.Parse):
-    assert parse_fixture.entity == 'Tests'
-    assert parse_fixture.name == 'GetTest'
